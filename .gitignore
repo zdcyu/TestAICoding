@@ -62,9 +62,18 @@ compile_commands.json
 *.jpeg
 *.tiff
 
-# Data files (keep directory but ignore contents)
+# Model files (large binary files)
+*.onnx
+*.weights
+*.pt
+*.pth
+*.engine
+*.trt
+
+# Data files (keep directory but ignore contents except coco.names)
 data/*
 !data/.gitkeep
+!data/coco.names
 
 # OS files
 .DS_Store

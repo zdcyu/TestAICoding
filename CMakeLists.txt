@@ -18,6 +18,10 @@ set(CMAKE_CUDA_STANDARD_REQUIRED ON)
 # Find CUDA Toolkit
 find_package(CUDAToolkit REQUIRED)
 
+# Find OpenCV (required for camera capture and object detection)
+find_package(OpenCV REQUIRED COMPONENTS core imgproc highgui videoio dnn)
+message(STATUS "OpenCV version: ${OpenCV_VERSION}")
+
 # CUDA architectures (adjust for your GPU)
 # 75 = Turing (RTX 20xx), 86 = Ampere (RTX 30xx), 89 = Ada Lovelace (RTX 40xx)
 if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
@@ -28,18 +32,23 @@ endif()
 set(CPP_SOURCES
     src/main.cpp
     src/image_processor.cpp
+    src/camera_capture.cpp
+    src/object_detector.cpp
 )
 
 set(CUDA_SOURCES
     kernels/image_filters.cu
     kernels/color_conversion.cu
     kernels/edge_detection.cu
+    kernels/detection_preprocessing.cu
 )
 
 set(HEADER_FILES
     include/common.h
     include/cuda_kernels.h
     include/image_processor.h
+    include/camera_capture.h
+    include/object_detector.h
 )
 
 # Create executable
@@ -54,9 +63,10 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-# Link CUDA runtime
+# Link CUDA runtime and OpenCV
 target_link_libraries(${PROJECT_NAME} PRIVATE
     CUDA::cudart
+    ${OpenCV_LIBS}
 )
 
 # Compiler warnings
