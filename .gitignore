@@ -1,0 +1,87 @@
+# Build directories
+build/
+out/
+bin/
+obj/
+x64/
+x86/
+Debug/
+Release/
+MinSizeRel/
+RelWithDebInfo/
+
+# Visual Studio files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+*.VC.VC.opendb
+ipch/
+
+# Visual Studio Code
+.vscode/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+CMakeSettings.json
+compile_commands.json
+
+# Compiled files
+*.obj
+*.o
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
+*.pdb
+*.ilk
+*.exp
+
+# CUDA compiled
+*.cubin
+*.ptx
+*.fatbin
+*.gpu
+
+# Output images
+*.ppm
+*.pgm
+*.bmp
+*.png
+*.jpg
+*.jpeg
+*.tiff
+
+# Model files (large binary files)
+*.onnx
+*.weights
+*.pt
+*.pth
+*.engine
+*.trt
+
+# Data files (keep directory but ignore contents except coco.names)
+data/*
+!data/.gitkeep
+!data/coco.names
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+*.swp
+*.swo
+*~
+.idea/
